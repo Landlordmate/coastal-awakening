@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little Haven Premium Retreat — Coastal Awakening | Gower</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1b3e;--navy2:#152347;--navy3:#1e2f5a;--gold:#c4975a;--gold2:#d4b07a;--gold3:#e8cfa0;--cream:#faf7f2;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:flex;align-items:center;justify-content:space-between;transition:all .4s ease;}
+nav.scrolled{background:rgba(13,27,62,.97);backdrop-filter:blur(20px);padding:12px 60px;border-bottom:1px solid rgba(196,151,90,.2);box-shadow:0 4px 30px rgba(0,0,0,.3);}
+.nav-brand{display:flex;align-items:center;text-decoration:none;}
+.nav-logo{height:70px;width:auto;transition:all .3s;}
+nav.scrolled .nav-logo{height:56px;}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none;}
+.nav-links a{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);text-decoration:none;transition:color .3s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-links a:hover::after{width:100%;}
+.nav-book{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;background:transparent;border:1px solid var(--gold);color:var(--gold);padding:10px 24px;text-decoration:none;transition:all .3s;}
+.nav-book:hover{background:var(--gold);color:var(--navy);}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:24px;height:1.5px;background:var(--cream);transition:all .3s;}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--navy);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;transition:opacity .3s;}
+.mobile-menu.open{opacity:1;}
+.mobile-menu a{font-family:'Cinzel',serif;font-size:1.1rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);text-decoration:none;}
+
+.page-hero{position:relative;height:90vh;min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
+.page-hero-bg{position:absolute;inset:0;background:url('https://lirp.cdn-website.com/7aac0705/dms3rep/multi/opt/IMG_0274-2880w.JPG') center/cover no-repeat;}
+.page-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,27,62,.75) 0%,rgba(13,27,62,.5) 40%,rgba(13,27,62,.88) 100%);}
+.page-hero-content{position:relative;z-index:2;max-width:800px;padding:0 20px;}
+.page-eyebrow{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;opacity:0;animation:fadeUp 1s ease .3s forwards;text-shadow:0 2px 12px rgba(0,0,0,0.9),0 0 40px rgba(196,151,90,0.8);background:rgba(0,0,0,0.3);display:inline-block;padding:8px 20px;border:1px solid rgba(196,151,90,0.4);}
+.page-title{font-family:'Cinzel',serif;font-size:clamp(2.2rem,6vw,4.5rem);font-weight:500;color:var(--cream);line-height:1.1;opacity:0;animation:fadeUp 1s ease .6s forwards;}
+.page-title span{color:var(--gold);}
+.page-subtitle{ text-shadow: 0 2px 12px rgba(0,0,0,0.7);font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2vw,1.6rem);font-style:italic;color: var(--cream);margin-top:20px;opacity:0;animation:fadeUp 1s ease .9s forwards;}
+.page-tags{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:32px;opacity:0;animation:fadeUp 1s ease 1.1s forwards;}
+.tag{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(196,151,90,.4);padding:8px 18px;}
+
+section{padding:100px 60px;}
+.section-eyebrow{text-shadow:0 0 30px rgba(196,151,90,.4);font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.section-title{font-family:'Cinzel',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:500;color:var(--cream);line-height:1.2;margin-bottom:24px;}
+.section-body{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;line-height:1.8;color: rgba(250,247,242,0.92);}
+.gold-line{width:48px;height:1px;background:var(--gold);margin-bottom:32px;}
+.btn-primary{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;background:var(--gold);color:var(--navy);padding:16px 36px;text-decoration:none;transition:all .3s;font-weight:500;display:inline-block;}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-2px);}
+.btn-outline{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;background:transparent;border:1px solid var(--gold);color:var(--gold);padding:16px 36px;text-decoration:none;transition:all .3s;display:inline-block;}
+.btn-outline:hover{background:var(--gold);color:var(--navy);}
+
+/* WHAT IS THIS */
+.what-section{background:var(--navy2);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.what-image{position:relative;aspect-ratio:4/5;overflow:hidden;}
+.what-image img{width:100%;height:100%;object-fit:cover;}
+.what-image::before{content:'';position:absolute;inset:16px;border:1px solid rgba(196,151,90,.3);z-index:1;pointer-events:none;}
+.callout{background:rgba(196,151,90,.08);border-left:2px solid var(--gold);padding:20px 24px;margin-top:28px;font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;color:var(--gold3);line-height:1.65;}
+
+/* INCLUDED */
+.included-section{background:var(--navy);}
+.included-list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:48px;}
+.inc-item{display:flex;align-items:center;gap:16px;padding:20px 24px;background:rgba(255,255,255,.03);border-top:1px solid rgba(196,151,90,.12);transition:background .3s;}
+.inc-item:hover{background:rgba(196,151,90,.06);}
+.inc-check{color:var(--gold);font-size:1rem;flex-shrink:0;}
+.inc-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:rgba(250,247,242,.95);line-height:1.5;}
+
+/* WEEKEND FLOW */
+.flow-section{background:var(--navy2);}
+.flow-days{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:60px;}
+.flow-day{background:rgba(255,255,255,.03);padding:44px 32px;}
+.flow-day-num{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.flow-day-title{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--cream);margin-bottom:20px;line-height:1.3;}
+.flow-day-subtitle{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:var(--gold3);margin-bottom:20px;}
+.flow-items{display:flex;flex-direction:column;gap:12px;}
+.flow-item{display:flex;gap:12px;align-items:flex-start;}
+.flow-bullet{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:7px;}
+.flow-text{font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(250,247,242,.92);line-height:1.55;}
+
+/* VENUE */
+.venue-section{background:var(--navy);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.venue-image-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.venue-image-grid img{width:100%;aspect-ratio:1;object-fit:cover;}
+.venue-image-grid img:first-child{grid-column:span 2;aspect-ratio:16/9;}
+.venue-features{display:flex;flex-direction:column;gap:16px;margin-top:32px;}
+.venue-feature{display:flex;align-items:center;gap:14px;font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:rgba(250,247,242,.92);}
+.venue-feature::before{content:'';width:20px;height:1px;background:var(--gold);flex-shrink:0;}
+
+/* CTA */
+.cta-section{position:relative;min-height:500px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
+.cta-bg{position:absolute;inset:0;background:url('https://lirp.cdn-website.com/7aac0705/dms3rep/multi/opt/IMG_4223-1920w.jpg') center/cover no-repeat;}
+.cta-bg::after{content:'';position:absolute;inset:0;background:rgba(13,27,62,.8);}
+.cta-content{position:relative;z-index:2;padding:0 20px;max-width:640px;}
+.cta-content .section-title{color:var(--cream);}
+.cta-content p{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;color:rgba(250,247,242,.95);margin-bottom:36px;line-height:1.7;}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+footer{background:#080f22;padding:70px 60px 32px;}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(196,151,90,.12);}
+.footer-brand img{height:60px;width:auto;margin-bottom:20px;}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:rgba(250,247,242,.5);line-height:1.6;max-width:240px;}
+.footer-col-title{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-links a{font-size:.85rem;color:rgba(250,247,242,.5);text-decoration:none;transition:color .3s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-contact{display:flex;flex-direction:column;gap:10px;}
+.footer-contact a{font-size:.85rem;color:rgba(250,247,242,.5);text-decoration:none;transition:color .3s;}
+.footer-contact a:hover{color:var(--gold);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;}
+.footer-copy{font-size:.75rem;color:rgba(250,247,242,.25);}
+.footer-coast{font-family:'Cormorant Garamond',serif;font-size:.9rem;font-style:italic;color:rgba(196,151,90,.4);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.rev{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s ease;}
+.rev.vis{opacity:1;transform:translateY(0);}
+.rev-delay-1{transition-delay:.15s;}
+.rev-delay-2{transition-delay:.3s;}
+.rev-delay-3{transition-delay:.45s;}
+
+@media(max-width:1024px){
+  nav,nav.scrolled{padding:16px 30px;}
+  section{padding:80px 30px;}
+  .what-section,.venue-section{grid-template-columns:1fr;gap:40px;}
+  .what-image{aspect-ratio:16/9;}
+  .flow-days{grid-template-columns:1fr;}
+  .included-list{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px;}
+}
+@media(max-width:768px){
+  .nav-links,.nav-book{display:none;}
+  .hamburger{display:flex;}
+  .footer-top{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center;}
+  .cta-btns{flex-direction:column;align-items:center;}
+}
+
+
+/* Hide default cursor sitewide */
+*, *::before, *::after { cursor: none !important; }
+
+/* Floating flame cursor element */
+#flame-cursor {
+  position: fixed;
+  top: 0; left: 0;
+  width: 48px;
+  height: 58px;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s linear;
+  will-change: transform;
+  filter: drop-shadow(0 0 8px rgba(196,151,90,0.6));
+}
+
+</style>
+</head>
+<body>
+
+<img id="flame-cursor" src="data:image/png;base64,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" alt="">
+<nav id="nav">
+  <a href="index.html" class="nav-brand">
+    <img src="https://lirp.cdn-website.com/7aac0705/dms3rep/multi/opt/Flame+logo+%281%29-1920w.png" alt="Coastal Awakening" class="nav-logo">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html">Experiences</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#enquire">Contact</a></li>
+  </ul>
+  <a href="index.html#enquire" class="nav-book">Join Waiting List</a>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMobile()">Home</a>
+  <a href="index.html" onclick="closeMobile()">Experiences</a>
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="day-events.html" onclick="closeMobile()">Day Retreats</a>
+  <a href="little-haven.html" onclick="closeMobile()">Little Haven</a>
+  <a href="corporate.html" onclick="closeMobile()">Corporate</a>
+  <a href="index.html#enquire" onclick="closeMobile()">Register Interest</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <p class="page-eyebrow">Weekend Retreat · Gower Peninsula · Limited to 12 Guests</p>
+    <h1 class="page-title"><span>Little Haven</span><br>The Coastal Immersion</h1>
+    <p class="page-subtitle">Two nights on the Gower. A structured, immersive reset by the sea.</p>
+    <div class="page-tags">
+      <span class="tag">2 Nights</span>
+      <span class="tag">Max 12 Guests</span>
+      <span class="tag">Fully Guided</span>
+      <span class="tag">All Inclusive</span>
+    </div>
+  </div>
+</div>
+
+<section class="what-section">
+  <div class="what-image rev">
+    <img src="https://lirp.cdn-website.com/7aac0705/dms3rep/multi/opt/Little-haven-front-of-house-e192d479-1920w.png" alt="Little Haven retreat house">
+  </div>
+  <div class="what-text">
+    <p class="section-eyebrow rev">What This Weekend Is</p>
+    <div class="gold-line rev rev-delay-1"></div>
+    <h2 class="section-title rev rev-delay-1">This is not a spa break.<br><span style="color:var(--gold);">It's a structured reset.</span></h2>
+    <p class="section-body rev rev-delay-2">This is a structured weekend designed to reset your nervous system, sharpen your thinking, and reconnect you to yourself at the edge of the sea.</p>
+    <p class="section-body rev rev-delay-3" style="margin-top:20px;">Every element — movement, immersion, workshops and integration — is carefully sequenced. You won't just relax. You'll recalibrate.</p>
+    <div class="callout rev rev-delay-3">You won't just relax. You'll recalibrate.</div>
+  </div>
+</section>
+
+<section class="included-section">
+  <p class="section-eyebrow rev" style="text-align:center;">Everything Included</p>
+  <div class="gold-line rev rev-delay-1" style="margin:0 auto 16px;"></div>
+  <h2 class="section-title rev rev-delay-1" style="text-align:center;">What's Included in Your Weekend</h2>
+  <div class="included-list">
+
+    <div class="inc-item rev rev-delay-1"><span class="inc-check">✦</span><span class="inc-text">All seasonal, nutrient-dense meals</span></div>
+    <div class="inc-item rev rev-delay-2"><span class="inc-check">✦</span><span class="inc-text">Daily guided movement & breathwork sessions</span></div>
+    <div class="inc-item rev"><span class="inc-check">✦</span><span class="inc-text">Cold-water immersion experience</span></div>
+    <div class="inc-item rev rev-delay-1"><span class="inc-check">✦</span><span class="inc-text">Sauna access & heat therapy session</span></div>
+    <div class="inc-item rev rev-delay-2"><span class="inc-check">✦</span><span class="inc-text">Structured mindset & clarity workshop</span></div>
+    <div class="inc-item rev"><span class="inc-check">✦</span><span class="inc-text">Immersive sound bath experience</span></div>
+    <div class="inc-item rev rev-delay-1"><span class="inc-check">✦</span><span class="inc-text">Curated Coastal Awakening welcome pack</span></div>
+    <div class="inc-item rev rev-delay-2"><span class="inc-check">✦</span><span class="inc-text">Guided integration & reflection time</span></div>
+    <div class="inc-item rev"><span class="inc-check">✦</span><span class="inc-text">Outdoor pool and hot tub access</span></div>
+  </div>
+</section>
+
+<section class="flow-section">
+  <p class="section-eyebrow rev" style="text-align:center;">The Weekend</p>
+  <div class="gold-line rev rev-delay-1" style="margin:0 auto 16px;"></div>
+  <h2 class="section-title rev rev-delay-1" style="text-align:center;">Simple Structure. Fully Guided.</h2>
+  <p class="section-body rev rev-delay-2" style="text-align:center;max-width:560px;margin:0 auto;">Designed for depth. Every day intentionally sequenced for maximum impact.</p>
+  <div class="flow-days">
+    <div class="flow-day rev">
+      <p class="flow-day-num">Friday</p>
+      <h3 class="flow-day-title">Arrival & Reset</h3>
+      <p class="flow-day-subtitle">Slow the pace. Reset your rhythm.</p>
+      <div class="flow-items">
+        <div class="flow-item"><div class="flow-bullet"></div><p class="flow-text">Arrive and settle into the coast</p></div>
+        <div class="flow-item"><div class="flow-bullet"></div><p class="flow-text">Light guided movement to release travel tension</p></div>
+        <div class="flow-item"><div class="flow-bullet"></div><p class="flow-text">Seasonal evening meal designed to ease you into the weekend</p></div>
+        <div class="flow-item"><div class="flow-bullet"></div><p class="flow-text">Opening session to set clarity and direction</p></div>
+      </div>
+    </div>
+    <div class="flow-day rev rev-delay-1">
+      <p class="flow-day-num">Saturday</p>
+      <h3 class="flow-day-title">The Immersion</h3>
+      <p class="flow-day-subtitle">Calm body. Clear mind.</p>
+      <div class="flow-items">
+        <div class="flow-item"><div class="flow-bullet"></div><p class="flow-text">Morning movement and breathwork</p></div>
+        <div class="flow-item"><div class="flow-bullet"></div><p class="flow-text">Nutrient-dense breakfast and lunch</p></div>
+        <div class="flow-item"><div class="flow-bullet"></div><p class="flow-text">Structured mindset and clarity workshop</p></div>
+        <div class="flow-item"><div class="flow-bullet"></div><p class="flow-text">Sea immersion and sauna experience</p></div>
+        <div class="flow-item"><div class="flow-bullet"></div><p class="flow-text">Immersive sound session</p></div>
+        <div class="flow-item"><div class="flow-bullet"></div><p class="flow-text">Evening meal &amp; leisure time</p></div>
+      </div>
+    </div>
+    <div class="flow-day rev rev-delay-2">
+      <p class="flow-day-num">Sunday</p>
+      <h3 class="flow-day-title">Integration & Direction</h3>
+      <p class="flow-day-subtitle">Leave grounded. Leave focused.</p>
+      <div class="flow-items">
+        <div class="flow-item"><div class="flow-bullet"></div><p class="flow-text">Guided reflection and integration session</p></div>
+        <div class="flow-item"><div class="flow-bullet"></div><p class="flow-text">Breakfast included</p></div>
+        <div class="flow-item"><div class="flow-bullet"></div><p class="flow-text">Coastal walk to anchor insight</p></div>
+        <div class="flow-item"><div class="flow-bullet"></div><p class="flow-text">Final session before departure</p></div>
+        <div class="flow-item"><div class="flow-bullet"></div><p class="flow-text">Leave recalibrated</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="venue-section">
+  <div>
+    <p class="section-eyebrow rev">The Setting</p>
+    <div class="gold-line rev rev-delay-1"></div>
+    <h2 class="section-title rev rev-delay-1">Little Haven —<br><span style="color:var(--gold);">Gower Coast</span></h2>
+    <p class="section-body rev rev-delay-2">A private coastal house designed for depth, focus and connection. Set along the Gower coastline, Little Haven is a spacious private house created for intimate small-group retreats.</p>
+    <p class="section-body rev rev-delay-3" style="margin-top:20px;">A dedicated on-site studio provides a calm, focused space for movement and breathwork by day — and a relaxed social setting by night.</p>
+    <p class="rev rev-delay-3" style="margin-top:20px;font-size:0.95rem;">Want to make a weekend of it? <a href="https://www.bayviewoxwich.co.uk" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;">Bayview Oxwich</a> is just minutes away — perfect for extending your stay.</p>
+    <div class="venue-features rev rev-delay-3">
+      <div class="venue-feature">Spacious communal areas for connection</div>
+      <div class="venue-feature">Outdoor pool and hot tub</div>
+      <div class="venue-feature">Private and shared room options</div>
+      <div class="venue-feature">Dedicated on-site yoga & movement studio</div>
+      <div class="venue-feature">Open skies and coastal views</div>
+    </div>
+  </div>
+  <div class="venue-image-grid rev rev-delay-2">
+    <img src="https://lirp.cdn-website.com/7aac0705/dms3rep/multi/opt/Little-haven-front-of-house-e192d479-1920w.png" alt="Little Haven exterior">
+    <img src="https://lirp.cdn-website.com/7aac0705/dms3rep/multi/opt/Little-Haven-oxwich-hot-tub+%281%29-1920w.webp" alt="Retreat interior">
+    <img src="https://lirp.cdn-website.com/7aac0705/dms3rep/multi/opt/Little-Haven-garden-yoga-1920w.webp" alt="Coastal views">
+  </div>
+</section>
+
+<div class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="cta-content">
+    <p class="section-eyebrow rev">Secure Your Place</p>
+    <div class="gold-line rev rev-delay-1" style="margin:0 auto 24px;"></div>
+    <h2 class="section-title rev rev-delay-1">Limited to 12 Guests</h2>
+    <p class="rev rev-delay-2">Spaces are strictly limited to preserve the depth and intimacy of the experience. Join the waiting list to be first to hear about upcoming dates.</p>
+    <div class="cta-btns rev rev-delay-3">
+      <a href="index.html#enquire" class="btn-primary">Join the Waiting List</a>
+      <a href="index.html" class="btn-outline">View All Experiences</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="https://lirp.cdn-website.com/7aac0705/dms3rep/multi/opt/Flame+logo+%281%29-1920w.png" alt="Coastal Awakening">
+      <p class="footer-tagline">Immersive coastal experiences designed to reset, recalibrate and reignite.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Experiences</p>
+      <ul class="footer-links">
+        <li><a href="day-events.html">Day Retreats</a></li>
+        <li><a href="little-haven.html">Little Haven Premium</a></li>
+        <li><a href="corporate.html">Corporate Retreats</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Navigate</p>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="index.html#enquire">Register Interest</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <p class="footer-col-title">Contact</p>
+      <a href="mailto:hello@coastalawakening.com" style="font-family:'DM Sans',sans-serif;color:var(--gold);text-decoration:none;">hello@coastalawakening.com</a>
+      <a href="tel:+447873253055">07873 253055</a>
+      <span style="font-size:.82rem;color:rgba(250,247,242,.35);margin-top:6px;line-height:1.6;">Oxwich Bay, Gower<br>South Wales</span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Coastal Awakening. All rights reserved.</p>
+    <p class="footer-coast">The coast is waiting.</p>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobileMenu');
+hamburger.addEventListener('click',()=>{
+  const open=mobileMenu.style.display==='flex'&&mobileMenu.classList.contains('open');
+  if(open){mobileMenu.classList.remove('open');setTimeout(()=>mobileMenu.style.display='none',300);}
+  else{mobileMenu.style.display='flex';setTimeout(()=>mobileMenu.classList.add('open'),10);}
+});
+function closeMobile(){mobileMenu.classList.remove('open');setTimeout(()=>mobileMenu.style.display='none',300);}
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}}),{threshold:.08});
+document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+
+// Flame cursor follow
+(function() {
+  const cursor = document.getElementById('flame-cursor');
+  if (!cursor) return;
+  document.addEventListener('mousemove', function(e) {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+})();
+</script>
+<script>
+(function() {
+  const el = document.getElementById('flame-cursor');
+  let mx = -200, my = -200;
+  document.addEventListe
