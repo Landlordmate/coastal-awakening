@@ -1401,8 +1401,8 @@ a[href^="mailto"] { text-transform: none !important; font-variant: normal !impor
 
 <script>
 var bookingLinks = {
-  'private-full': 'https://buy.stripe.com/00w3cxgG3fAj7iaa4TfQI00',
-  'shared-full': 'https://buy.stripe.com/aFa7sN9dBafZ8mea4TfQI01',
+  'private-full': 'https://buy.stripe.com/eVq4gB1L987R9qi2CrfQI06',
+  'shared-full': 'https://buy.stripe.com/fZu5kFdtR5ZJfOGcd1fQI07',
   'private-deposit': 'https://buy.stripe.com/8x2cN79dB9bVeKC4KzfQI02',
   'shared-deposit': 'https://buy.stripe.com/5kQ00lgG39bV5a20ujfQI03'
 };
@@ -1431,7 +1431,7 @@ function updateBookingCta() {
     var key = bookingSelection.room + '-' + bookingSelection.payment;
     cta.href = bookingLinks[key];
     cta.classList.add('active');
-    cta.textContent = bookingSelection.payment === 'deposit' ? 'Continue to £250 Deposit' : (bookingSelection.room === 'private' ? 'Continue to £850 Payment' : 'Continue to £750 Payment');
+    cta.textContent = bookingSelection.payment === 'deposit' ? 'Continue to £250 Deposit' : (bookingSelection.room === 'private' ? 'Continue to £950 Payment' : 'Continue to £850 Payment');
   } else {
     cta.classList.remove('active');
     cta.textContent = 'Select options above';
