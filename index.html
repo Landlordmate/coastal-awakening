@@ -796,8 +796,10 @@ footer {
 }
 
 
-/* Hide default cursor sitewide */
-*, *::before, *::after { cursor: none !important; }
+/* Hide default cursor sitewide - desktop with a mouse only */
+@media (hover: hover) and (pointer: fine) {
+  *, *::before, *::after { cursor: none !important; }
+}
 
 /* Floating flame cursor element */
 
@@ -817,6 +819,14 @@ a[href^="mailto"] { text-transform: none !important; font-variant: normal !impor
   z-index: 2147483647;
   transform: translate(-50%, -50%);
   filter: drop-shadow(0 0 6px rgba(212,168,83,0.7));
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+#flame-cursor.active { opacity: 1; }
+
+/* Never show the custom cursor on touch devices */
+@media (hover: none), (pointer: coarse) {
+  #flame-cursor { display: none !important; }
 }
 
 
@@ -830,9 +840,12 @@ a[href^="mailto"] { text-transform: none !important; font-variant: normal !impor
 (function() {
   var cur = document.getElementById('flame-cursor');
   if (!cur) { cur = document.createElement('div'); cur.id = 'flame-cursor'; document.body.appendChild(cur); }
+  var isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  if (isTouch) { return; }
   document.addEventListener('mousemove', function(e) {
     cur.style.left = e.clientX + 'px';
     cur.style.top = e.clientY + 'px';
+    cur.classList.add('active');
   });
 })();
 </script>
@@ -1258,4 +1271,13 @@ function closeMobile() {
   if (menu) menu.classList.remove('open');
   document.body.style.overflow = '';
 }
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.getElementById('hamburger');
+  if (btn) {
+    btn.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      toggleMobileMenu(e);
+    }, { passive: false });
+  }
+});
 </script>
