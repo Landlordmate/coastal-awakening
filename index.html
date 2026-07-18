@@ -1391,7 +1391,7 @@ a[href^="mailto"] { text-transform: none !important; font-variant: normal !impor
       <span class="booking-option-label">Payment</span>
       <div class="booking-option-row">
         <button type="button" class="booking-option-btn" data-payment="deposit" onclick="selectBookingOption('payment', 'deposit', this)">£250 Deposit</button>
-        <button type="button" class="booking-option-btn" data-payment="full" onclick="selectBookingOption('payment', 'full', this)">Pay in Full</button>
+        <button type="button" class="booking-option-btn" data-payment="full" id="payFullBtn" onclick="selectBookingOption('payment', 'full', this)">Pay in Full</button>
       </div>
     </div>
 
@@ -1423,7 +1423,19 @@ function selectBookingOption(type, value, btnEl) {
   var buttons = group.querySelectorAll('.booking-option-btn');
   buttons.forEach(function(b) { b.classList.remove('selected'); });
   btnEl.classList.add('selected');
+  updatePayFullLabel();
   updateBookingCta();
+}
+function updatePayFullLabel() {
+  var payFullBtn = document.getElementById('payFullBtn');
+  if (!payFullBtn) return;
+  if (bookingSelection.room === 'private') {
+    payFullBtn.textContent = '£950 Pay in Full';
+  } else if (bookingSelection.room === 'shared') {
+    payFullBtn.textContent = '£850 Pay in Full';
+  } else {
+    payFullBtn.textContent = 'Pay in Full';
+  }
 }
 function updateBookingCta() {
   var cta = document.getElementById('bookingModalCta');
